@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --background: #ede8d0;
+    --background-dark: #e7e0c0;
+    --primary: #29937c;
+    --hover: #176554;
+    --section-header-font-size: 3rem;
+    --title-font-size: 12rem;
+    --large-font-size: 1.4rem;
+    --medium-font-size: 1.2rem;
+    --small-font-size: 1rem;
+}
+
+* {
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    scroll-margin-top: 10vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    color: var(--primary);
+    margin: 0;
+}
+
+html {
+    font-family: "Funnel Sans", sans-serif;
+    background-color: var(--background);
+    scroll-behavior: smooth;
+    text-align: center;
+    font-size: var(--large-font-size);
+}
+
+#title-input {
+    width: 50rem;
+    background-color: var(--background);
+    padding: 0.5rem;
+    border-radius: .5rem;
+    border: 2px solid var(--primary);
+    font-size: var(--small-font-size);   
+}
+#title-input::placeholder {
+    color: var(--primary);
+}
+#title-input:focus {
+    outline: none;
+}
+
+#card-input-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-input-container {
+    width: 51rem;
+    height: 8rem;
+    margin: 0.5rem 0;
+    border: 2px solid var(--primary);
+    box-sizing: border-box;
+    border-radius: .5rem;
+    text-align: center;
+    color: var(--primary);
+    outline: none;
+    align-content: center;
+    background: linear-gradient(var(--primary), var(--primary)) no-repeat center/2px 100%;
+}
+
+.term-input, .definition-input {
+    margin: 0;
+    width: 49%;
+    border: none;
+    background-color: var(--background);
+    height: 95%;
+    text-align: center;
+    font-size: var(--small-font-size);
+}
+.term-input::placeholder, .definition-input::placeholder {
+    color: var(--primary);
+}
+.term-input:focus, .definition-input:focus {
+    outline: none;
+}
+
+#add-subtract-buttons-container {
+    display: flex;
+    justify-content: center;
+}
+
+#add-subtract-button {
+    font-size: var(--large-font-size);
+    font-weight: 900;
+    border: 2px solid var(--primary);
+    border-radius: .25rem;
+    display: block;
+    width: 1.5rem;
+    margin: .5rem;
+}
+
+#save-button {
+    font-size: var(--large-font-size);
+    border: 2px solid var(--primary);
+    border-radius: .25rem;
+    margin: auto;
+    width: 4rem;
+    display: block;
+}
+
+#error-message {
+    font-size: .8rem;
+    font-style: italic;
+}
