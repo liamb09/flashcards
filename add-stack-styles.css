@@ -97,10 +97,9 @@ html {
 
 #save-button {
     font-size: var(--large-font-size);
-    border: 2px solid var(--primary);
-    border-radius: .25rem;
+    /* border: 2px solid var(--primary);
+    border-radius: .25rem; */
     margin: auto;
-    width: 4rem;
     display: block;
 }
 

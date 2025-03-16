@@ -60,7 +60,7 @@ a {
     justify-content: center;
 }
 
-#stack-card {
+.stack-card {
     width: 50rem;
     height: 10rem;
     margin: 1rem auto;
@@ -75,13 +75,13 @@ a {
     outline: none;
     align-content: center;
 }
-#stack-card:hover {
+.stack-card:hover {
     box-shadow: inset 50rem 0 0 0 var(--primary);
     color: var(--background)
 }
-#stack-card > h1, #stack-card > p {
+.stack-card > h1, .stack-card > p {
     color: var(--primary);
 }
-#stack-card:hover > h1, #stack-card:hover > p {
+.stack-card:hover > h1, .stack-card:hover > p {
     color: var(--background);
 }
