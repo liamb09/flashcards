@@ -13,8 +13,6 @@
 }
 
 * {
-    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
-    scroll-margin-top: 10vh;
     -ms-overflow-style: none;
     scrollbar-width: none;
     color: var(--primary);

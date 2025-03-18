@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Stack Viewer</title>
+        <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
+        <!-- <link rel="stylesheet" href="styles.css" /> -->
+        <link rel="stylesheet" href="viewer-styles.css" />
+        <script src="scripts.js"></script>
+    </head>
+    <body onload="setupViewer()">
+        <h1 id="stack-title"></h1>
+        <div id="card-container">
+            <div class="card" id="current-card" onclick="flipCard()"> hidden></div>
+            <div class="card prev" onclick="goToPrevCard()" id="prev-card" hidden></div>
+            <div class="card next" onclick="goToNextCard()" id="next-card"></div>
+            <div class="card prevprev" id="prevprev-card"></div>
+            <div class="card nextnext" id="nextnext-card"></div>
+        </div>
+    </body>
+</html>

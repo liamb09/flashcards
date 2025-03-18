@@ -100,7 +100,123 @@ function saveStack () {
     window.location.href = 'index.html';
 }
 
+var currentCardID = 0;
+var stackID = 0;
+var stacks;
+var stackTitles;
+var stackData;
+
 function viewStack (id) {
     var idNum = id.match(/\d+/g)[0];
-    window.location.href = `viewer.html?setID=${idNum}`;
+    window.location.href = `viewer.html?stackID=${idNum}`;
+}
+
+function setupViewer () {
+    const urlParams = new URLSearchParams(window.location.search);
+    stackID = parseInt(urlParams.get('stackID'));
+    stacks = JSON.parse(localStorage.getItem("liamb09-flashcards"));
+    stackTitles = stacks[1];
+    stackData = stacks[2];
+    document.title = stackTitles[stackID];
+    document.getElementById("stack-title").innerHTML = stackTitles[stackID];
+    currentCardID = 0;
+    updateViewer();
+}
+
+function updateViewer () {
+    document.getElementById("prevprev-card").hidden = false;
+    document.getElementById("prev-card").hidden = false;
+    document.getElementById("current-card").hidden = false;
+    document.getElementById("next-card").hidden = false;
+    document.getElementById("nextnext-card").hidden = false;
+    if (currentCardID <= 1) {
+        document.getElementById("prevprev-card").hidden = true;
+    }
+    if (currentCardID == 0) {
+        document.getElementById("prev-card").hidden = true;
+    }
+    if (stackTitles.length - currentCardID - 1 <= 1) {
+        document.getElementById("nextnext-card").hidden = true;
+    }
+    if (stackTitles.length - currentCardID - 1 == 0) {
+        document.getElementById("next-card").hidden = true;
+    }
+
+    if (currentCardID-2 >= 0) document.getElementById("prevprev-card").innerHTML = stackData[stackID][currentCardID-2][0];
+    if (currentCardID-1 >= 0) document.getElementById("prev-card").innerHTML = stackData[stackID][currentCardID-1][0];
+    document.getElementById("current-card").innerHTML = stackData[stackID][currentCardID][0];
+    if (currentCardID+1 < stackTitles.length) document.getElementById("next-card").innerHTML = stackData[stackID][currentCardID+1][0];
+    if (currentCardID+2 < stackTitles.length) document.getElementById("nextnext-card").innerHTML = stackData[stackID][currentCardID+2][0];
+}
+
+function goToPrevCard () {
+    prevprevCard = document.getElementById("prevprev-card");
+    prevprevCard.classList.remove("prevprev");
+    prevprevCard.classList.add("prev");
+    prevprevCard.setAttribute("onclick", "goToPrevCard()");
+
+    prevCard = document.getElementById("prev-card");
+    prevCard.classList.remove("prev");
+    prevCard.setAttribute("onclick", "flipCard()");
+
+    currentCard = document.getElementById("current-card");
+    currentCard.classList.add("next");
+    currentCard.setAttribute("onclick", "goToNextCard()");
+
+    nextCard = document.getElementById("next-card");
+    nextCard.classList.remove("next");
+    nextCard.classList.add("nextnext");
+    nextCard.removeAttribute("onclick");
+
+    nextnextCard = document.getElementById("nextnext-card");
+
+    setTimeout(() => {
+        document.getElementById("card-container").innerHTML += `<div class="card prevprev" id="prevprev-card">This is the previous previous card!</div>`;
+        prevprevCard.id = "prev-card";
+        prevCard.id = "current-card";
+        currentCard.id = "next-card";
+        nextCard.id = "nextnext-card";
+        nextnextCard.remove();
+        currentCardID--;
+        console.log(currentCardID);
+    }, 1000);
+    updateViewer();
+}
+
+function goToNextCard () {
+    prevprevCard = document.getElementById("prevprev-card");
+
+    prevCard = document.getElementById("prev-card")
+    prevCard.classList.remove("prev");
+    prevCard.classList.add("prevprev")
+    prevCard.removeAttribute("onclick");
+
+    currentCard = document.getElementById("current-card")
+    currentCard.classList.add("prev");
+    currentCard.setAttribute("onclick", "goToPrevCard()");
+
+    nextCard = document.getElementById("next-card");
+    nextCard.classList.remove("next");
+    nextCard.setAttribute("onclick", "flipCard()");
+
+    nextnextCard = document.getElementById("nextnext-card");
+    nextnextCard.classList.remove("nextnext");
+    nextnextCard.classList.add("next");
+    nextnextCard.setAttribute("onclick", "goToNextCard()");
+
+    setTimeout(() => {
+        prevprevCard.remove();
+        prevCard.id = "prevprev-card";
+        currentCard.id = "prev-card";
+        nextCard.id = "current-card";
+        nextnextCard.id = "next-card";
+        document.getElementById("card-container").innerHTML += `<div class="card nextnext" id="nextnext-card">This is the next next card!</div>`;
+        currentCardID++;
+        console.log(currentCardID);
+    }, 1000);
+    updateViewer();
+}
+
+function flipCard() {
+
 }
