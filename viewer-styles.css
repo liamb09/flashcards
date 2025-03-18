@@ -55,7 +55,12 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: all 1s;
+    transition: all 0.75s;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .card.prev {
