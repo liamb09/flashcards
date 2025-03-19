@@ -97,7 +97,7 @@ function saveStack () {
     currentStackData[1].unshift(document.getElementById("title-input").value);
     currentStackData[2].unshift(stack);
     localStorage.setItem("liamb09-flashcards", JSON.stringify(currentStackData));
-    window.location.href = 'index.html';
+    window.location.href = "index.html";
 }
 
 var currentCardID = 0;
@@ -245,5 +245,22 @@ function flipCard() {
         currentCard.innerHTML = stackData[stackID][currentCardID][1];
     } else {
         currentCard.innerHTML = stackData[stackID][currentCardID][0];
+    }
+}
+
+function addStackAreYouSure () {
+    if (confirm("Are you sure you would like to exit? This stack will not be saved.")) {
+        window.location.href = "index.html";
+    }
+}
+
+function viewerAreYouSure () {
+    if (confirm("Are you sure you would like to delete this stack? This action cannot be undone.")) {
+        currentData = JSON.parse(localStorage.getItem("liamb09-flashcards"));
+        currentData[0] -= 1;
+        currentData[1].splice(stackID, 1);
+        currentData[2].splice(stackID, 1);
+        localStorage.setItem("liamb09-flashcards", JSON.stringify(currentData));
+        window.location.href = "index.html"
     }
 }

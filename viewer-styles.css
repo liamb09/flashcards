@@ -5,6 +5,7 @@
     --background-dark: #e7e0c0;
     --primary: #29937c;
     --hover: #176554;
+    --red: #bd7373;
     --section-header-font-size: 3rem;
     --title-font-size: 12rem;
     --large-font-size: 1.4rem;
@@ -85,4 +86,66 @@ html {
     width: 25rem;
     height: 15rem;
     left: 150%;
+}
+
+#home-button {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 1rem;
+    height: auto;
+}
+
+#settings-button {
+    position: fixed;
+    width: 1rem;
+    height: auto;
+    top: 0.5rem;
+    left: calc(100% - 0.5rem);
+    transform: translate(-100%, 0);
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+}
+
+#settings-dropdown {
+    position: fixed;
+    display: inline-block;
+}
+
+#settings-dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: var(--background);
+    min-width: 160px;
+    border: 2px solid var(--primary);
+    border-radius: 0.5rem;
+    z-index: 1;
+    top: 2rem;
+    left: calc(100% - 0.5rem);
+    transform: translate(-100%, 0);
+    overflow: hidden;
+}
+#settings-dropdown-content:hover {
+    display: block
+}
+
+#settings-dropdown-content a {
+    color: var(--primary);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 2px solid var(--primary);
+}
+#settings-dropdown-content a:last-child {
+    border: none;
+}
+#settings-dropdown-content a:hover {
+    background-color: var(--background-dark)
+}
+#delete-dropdown-button {
+    color: var(--red) !important;
+}
+
+#settings-dropdown:hover #settings-dropdown-content, #settings-dropdown-content:hover {
+    display: block;
 }

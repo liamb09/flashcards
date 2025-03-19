@@ -84,3 +84,11 @@ a {
 .stack-card:hover > h1, .stack-card:hover > p {
     color: var(--background);
 }
+
+#home-button {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 1rem;
+    height: auto;
+}
