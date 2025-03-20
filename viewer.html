@@ -13,15 +13,15 @@
     <body onload="setupViewer()">
         <h1 id="stack-title"></h1>
         <div id="card-container">
-            <div class="card" id="current-card" onclick="flipCard()"> hidden></div>
-            <div class="card prev" onclick="goToPrevCard()" id="prev-card" hidden></div>
-            <div class="card next" onclick="goToNextCard()" id="next-card"></div>
-            <div class="card prevprev" id="prevprev-card"></div>
-            <div class="card nextnext" id="nextnext-card"></div>
+            <div class="card" id="current-card" onclick="flipCard()" hidden><div id="front"></div><div id="back"></div></div>
+            <div class="card prev" onclick="goToPrevCard()" id="prev-card" hidden><div id="front"></div><div id="back"></div></div>
+            <div class="card next" onclick="goToNextCard()" id="next-card"><div id="front"></div><div id="back"></div></div>
+            <div class="card prevprev" id="prevprev-card"><div id="front"></div><div id="back"></div></div>
+            <div class="card nextnext" id="nextnext-card"><div id="front"></div><div id="back"></div></div>
         </div>
         <a href="index.html"><img src="assets/home-icon.png" width="30" height="30" alt="Home" id="home-button" /></a>
         <div id="settings-dropdown">
-            <img src="assets/settings-icon.png" width="30" height="30" alt="Home" id="settings-button" />
+            <img src="assets/settings-icon.png" width="30" height="30" alt="Settings" id="settings-button" />
             <div id="settings-dropdown-content">
                 <a href="#" id="edit-dropdown-button">Edit</a>
                 <a href="#" id="delete-dropdown-button" onclick="viewerAreYouSure()">Delete</a>

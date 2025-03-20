@@ -142,11 +142,24 @@ function updateViewer () {
         document.getElementById("next-card").hidden = true;
     }
 
-    if (currentCardID-2 >= 0) document.getElementById("prevprev-card").innerHTML = stackData[stackID][currentCardID-2][0];
-    if (currentCardID-1 >= 0) document.getElementById("prev-card").innerHTML = stackData[stackID][currentCardID-1][0];
-    document.getElementById("current-card").innerHTML = stackData[stackID][currentCardID][0];
-    if (currentCardID+1 < stackData[stackID].length) document.getElementById("next-card").innerHTML = stackData[stackID][currentCardID+1][0];
-    if (currentCardID+2 < stackData[stackID].length) document.getElementById("nextnext-card").innerHTML = stackData[stackID][currentCardID+2][0];
+    if (currentCardID-2 >= 0) {
+        document.querySelector("#prevprev-card #front").innerHTML = stackData[stackID][currentCardID-2][0];
+        document.querySelector("#prevprev-card #back").innerHTML = stackData[stackID][currentCardID-2][1];
+    }
+    if (currentCardID-1 >= 0) {
+        document.querySelector("#prev-card #front").innerHTML = stackData[stackID][currentCardID-1][0];
+        document.querySelector("#prev-card #back").innerHTML = stackData[stackID][currentCardID-1][1];
+    }
+    document.querySelector("#current-card #front").innerHTML = stackData[stackID][currentCardID][0];
+    document.querySelector("#current-card #back").innerHTML = stackData[stackID][currentCardID][1];
+    if (currentCardID+1 < stackData[stackID].length) {
+        document.querySelector("#next-card #front").innerHTML = stackData[stackID][currentCardID+1][0];
+        document.querySelector("#next-card #back").innerHTML = stackData[stackID][currentCardID+1][0];
+    }
+    if (currentCardID+2 < stackData[stackID].length) {
+        document.querySelector("#nextnext-card #front").innerHTML = stackData[stackID][currentCardID+2][0];
+        document.querySelector("#nextnext-card #back").innerHTML = stackData[stackID][currentCardID+2][1];
+    }
 }
 
 function goToPrevCard () {
@@ -179,7 +192,7 @@ function goToPrevCard () {
         prevCard.id = "current-card";
         currentCard.id = "next-card";
         nextCard.id = "nextnext-card";
-        document.getElementById("card-container").innerHTML += `<div class="card prevprev" id="prevprev-card">This is the previous previous card!</div>`;
+        document.getElementById("card-container").innerHTML += `<div class="card prevprev" id="prevprev-card"><div id="front"></div><div id="back"></div></div>`;
         currentCardID--;
         updateViewer();
         enablePointerEventsToCards();
@@ -216,7 +229,7 @@ function goToNextCard () {
         currentCard.id = "prev-card";
         nextCard.id = "current-card";
         nextnextCard.id = "next-card";
-        document.getElementById("card-container").innerHTML += `<div class="card nextnext" id="nextnext-card">This is the next next card!</div>`;
+        document.getElementById("card-container").innerHTML += `<div class="card nextnext" id="nextnext-card"><div id="front"></div><div id="back"></div></div>`;
         currentCardID++;
         updateViewer();
         enablePointerEventsToCards();
@@ -241,10 +254,10 @@ function enablePointerEventsToCards () {
 
 function flipCard() {
     currentCard = document.getElementById("current-card");
-    if (currentCard.innerHTML == stackData[stackID][currentCardID][0]) {
-        currentCard.innerHTML = stackData[stackID][currentCardID][1];
+    if (currentCard.classList.contains("flipped")) {
+        currentCard.classList.remove("flipped");
     } else {
-        currentCard.innerHTML = stackData[stackID][currentCardID][0];
+        currentCard.classList.add("flipped");
     }
 }
 
