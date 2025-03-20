@@ -105,6 +105,7 @@ var stackID = 0;
 var stacks;
 var stackTitles;
 var stackData;
+var canChangeCards = true;
 
 function viewStack (id) {
     var idNum = id.match(/\d+/g)[0];
@@ -237,6 +238,7 @@ function goToNextCard () {
 }
 
 function disablePointerEventsToCards() {
+    canChangeCards = false;
     document.getElementById("prevprev-card").style.pointerEvents = "none";
     document.getElementById("prev-card").style.pointerEvents = "none";
     document.getElementById("current-card").style.pointerEvents = "none";
@@ -245,6 +247,7 @@ function disablePointerEventsToCards() {
 }
 
 function enablePointerEventsToCards () {
+    canChangeCards = true;
     document.getElementById("prevprev-card").style.pointerEvents = "auto";
     document.getElementById("prev-card").style.pointerEvents = "auto";
     document.getElementById("current-card").style.pointerEvents = "auto";
@@ -277,3 +280,20 @@ function viewerAreYouSure () {
         window.location.href = "index.html"
     }
 }
+
+document.addEventListener('keydown', (event) => {
+    if (!canChangeCards) {
+        return;
+    }
+    switch (event.key) {
+        case "ArrowLeft":
+            goToPrevCard();
+            break;
+        case "ArrowRight":
+            goToNextCard();
+            break;
+        case " ":
+            flipCard();
+            break;
+    }
+});
