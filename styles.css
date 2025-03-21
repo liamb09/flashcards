@@ -60,7 +60,8 @@ a {
 
 .stack-card {
     width: 50rem;
-    height: 10rem;
+    height: auto;
+    min-height: 10rem;
     padding: 1rem;
     margin: 1rem auto;
     border: 5px solid var(--primary);

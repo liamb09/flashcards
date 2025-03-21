@@ -26,6 +26,8 @@ function getStack (stackName, stackData, id) {
 }
 
 stack = [];
+editingStack = false;
+editingStackID = -1;
 
 function addCard () {
     if (stack.length > 99) {
@@ -45,7 +47,23 @@ function removeCard () {
 
 function updateStack () {
     if (stack.length == 0) {
-        stack = [["",""],["",""],["",""]];
+        const urlParams = new URLSearchParams(window.location.search);
+        editingStackID = parseInt(urlParams.get('stackID'));
+        if (!isNaN(editingStackID)) {
+            editingStack = true;
+            editingStackData = JSON.parse(localStorage.getItem("liamb09-flashcards"));
+            editingStackTitle = editingStackData[1][editingStackID];
+            editingStackTerms = editingStackData[2][editingStackID];
+            document.getElementById("title-input").value = editingStackTitle;
+            editingStackTerms.forEach((term) => {
+                stack.push(term);
+            });
+            document.title = `Edit "${editingStackTitle}"`;
+            document.getElementById("add-stack-page-title").innerHTML = `Edit "${editingStackTitle}"`;
+        } else {
+            editingStack = false;
+            stack = [["",""],["",""],["",""]];
+        }
     }
     document.getElementById("card-input-list").innerHTML = "";
     stack.forEach((card, index) => {
@@ -74,10 +92,12 @@ function saveStack () {
     }
 
     // Make sure user has chosen unique stack name
-    stackNames = JSON.parse(localStorage.getItem("liamb09-flashcards"))[1];
-    if (stackNames.includes(document.getElementById("title-input").value)) {
-        document.getElementById("error-message").innerHTML = "You already have a stack with that name. Please choose a different name.";
-        return;
+    if (!editingStack) {
+        stackNames = JSON.parse(localStorage.getItem("liamb09-flashcards"))[1];
+        if (stackNames.includes(document.getElementById("title-input").value)) {
+            document.getElementById("error-message").innerHTML = "You already have a stack with that name. Please choose a different name.";
+            return;
+        }
     }
 
     // Make sure all fields are filled
@@ -93,9 +113,14 @@ function saveStack () {
 
     // Save stack
     currentStackData = JSON.parse(localStorage.getItem("liamb09-flashcards"));
-    currentStackData[0] = parseInt(currentStackData[0]) + 1
-    currentStackData[1].unshift(document.getElementById("title-input").value);
-    currentStackData[2].unshift(stack);
+    if (!editingStack) {
+        currentStackData[0] = parseInt(currentStackData[0]) + 1
+        currentStackData[1].unshift(document.getElementById("title-input").value);
+        currentStackData[2].unshift(stack);
+    } else {
+        currentStackData[1][editingStackID] = document.getElementById("title-input").value;
+        currentStackData[2][editingStackID] = stack;
+    }
     localStorage.setItem("liamb09-flashcards", JSON.stringify(currentStackData));
     window.location.href = "index.html";
 }
@@ -265,7 +290,7 @@ function flipCard() {
 }
 
 function addStackAreYouSure () {
-    if (confirm("Are you sure you would like to exit? This stack will not be saved.")) {
+    if (!editingStack && confirm("Are you sure you would like to exit? This stack will not be saved.") || editingStack && confirm("Are you sure you would like to exit? Your changes will not be saved.")) {
         window.location.href = "index.html";
     }
 }
@@ -311,4 +336,9 @@ function invertCards () {
     stackData = currentSave[2];
     localStorage.setItem("liamb09-flashcards", JSON.stringify(currentSave));
     updateViewer();
+}
+
+function editStack() {
+    window.location.href = `add-stack.html?stackID=${stackID}`;
+    stack = [];
 }

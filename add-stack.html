@@ -11,7 +11,7 @@
         <script src="scripts.js"></script>
     </head>
     <body onload="updateStack()">
-        <h1>Add a stack</h1>
+        <h1 id="add-stack-page-title">Add a stack</h1>
         <input id="title-input" placeholder="Stack name...">
         <div id="card-input-list">
             <div class="card-input-container">
@@ -25,5 +25,6 @@
         <a id="save-button" onclick="saveStack()">Save&rarr;</a>
         <p id="error-message"></p>
         <a onclick="addStackAreYouSure()"><img src="assets/home-icon.png" width="30" height="30" alt="Home" id="home-button" /></a>
+        <div id="spacer"></div>
     </body>
 </html>
