@@ -138,6 +138,9 @@ html {
     padding-bottom: 0.5rem;
     padding-left: 0.5rem;
 }
+#settings-button:hover {
+    padding-left: 3rem;
+}
 
 #settings-dropdown {
     position: fixed;
@@ -167,6 +170,7 @@ html {
     text-decoration: none;
     display: block;
     border-bottom: 2px solid var(--primary);
+    cursor: pointer;
 }
 #settings-dropdown-content a:last-child {
     border: none;

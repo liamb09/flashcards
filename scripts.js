@@ -282,6 +282,9 @@ function viewerAreYouSure () {
 }
 
 document.addEventListener('keydown', (event) => {
+    if (!document.URL.includes("viewer.html")) {
+        return;
+    }
     if (!canChangeCards) {
         return;
     }
@@ -297,3 +300,15 @@ document.addEventListener('keydown', (event) => {
             break;
     }
 });
+
+function invertCards () {
+    currentSave = JSON.parse(localStorage.getItem("liamb09-flashcards"));
+    for (var i = 0; i < currentSave[2][stackID].length; i++) {
+        var temp = currentSave[2][stackID][i][0];
+        currentSave[2][stackID][i][0] = currentSave[2][stackID][i][1];
+        currentSave[2][stackID][i][1] = temp;
+    }
+    stackData = currentSave[2];
+    localStorage.setItem("liamb09-flashcards", JSON.stringify(currentSave));
+    updateViewer();
+}
