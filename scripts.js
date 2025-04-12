@@ -67,6 +67,7 @@ function updateStack () {
     }
     document.getElementById("card-input-list").innerHTML = "";
     stack.forEach((card, index) => {
+        // alert(card, index);
         document.getElementById("card-input-list").innerHTML += getCard(card, index);
     });
 }
@@ -79,8 +80,8 @@ function updateCard (id) {
 
 function getCard (cardData, index) {
     return `<div class="card-input-container">
-                <textarea class="term-input" id="term${index}" placeholder="Enter term..." value="${cardData[0]}" onchange="updateCard(this.id)" onkeyup="updateCard(this.id)" rows="4"></textarea>
-                <textarea class="definition-input" id="definition${index}" placeholder="Enter definition..." value="${cardData[1]}" onchange="updateCard(this.id)" onkeyup="updateCard(this.id)" rows="4"></textarea>
+                <textarea class="term-input" id="term${index}" placeholder="Enter term..." value="${cardData[0]}" onchange="updateCard(this.id)" onkeyup="updateCard(this.id)" rows="4">${cardData[0]}</textarea>
+                <textarea class="definition-input" id="definition${index}" placeholder="Enter definition..." value="${cardData[1]}" onchange="updateCard(this.id)" onkeyup="updateCard(this.id)" rows="4">${cardData[1]}</textarea>
             </div>`
 }
 
