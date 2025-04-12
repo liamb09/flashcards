@@ -185,3 +185,10 @@ html {
 #settings-dropdown:hover #settings-dropdown-content, #settings-dropdown-content:hover {
     display: block;
 }
+
+#stack-progress-indicator {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

@@ -145,6 +145,7 @@ function setupViewer () {
     stackData = stacks[2];
     document.title = stackTitles[stackID];
     document.getElementById("stack-title").innerHTML = stackTitles[stackID];
+    document.getElementById("stack-progress-indicator").innerHTML = `${currentCardID} / ${stackData[stackID].length}`;
     currentCardID = 0;
     updateViewer();
 }
@@ -212,6 +213,7 @@ function goToPrevCard () {
     nextnextCard = document.getElementById("nextnext-card");
 
     disablePointerEventsToCards();
+    document.getElementById("stack-progress-indicator").innerHTML = `${currentCardID-1} / ${stackData[stackID].length}`;
     setTimeout(() => {
         nextnextCard.remove();
         prevprevCard.id = "prev-card";
@@ -249,6 +251,7 @@ function goToNextCard () {
     nextnextCard.setAttribute("onclick", "goToNextCard()");
 
     disablePointerEventsToCards();
+    document.getElementById("stack-progress-indicator").innerHTML = `${currentCardID+1} / ${stackData[stackID].length}`;
     setTimeout(() => {
         prevprevCard.remove();
         prevCard.id = "prevprev-card";
